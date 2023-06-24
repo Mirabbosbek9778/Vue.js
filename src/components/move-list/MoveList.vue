@@ -8,14 +8,11 @@
 import MovieListItem from "../movie-list-item/MovieListItem.vue";
 export default {
   components: { MovieListItem },
-  data() {
-    return {
-      movies: [
-        { name: "Ertugrul", viewers: 811, favourite: false, like: true },
-        { name: "Kurtlar Vadisi", viewers: 830, favourite: false, like: true },
-        { name: "KAra sevda", viewers: 785, favourite: false, like: true },
-      ],
-    };
+  props: {
+    movies: {
+      type: Array,
+      required: true,
+    },
   },
 };
 </script>
