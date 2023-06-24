@@ -25,7 +25,7 @@ export default {};
 .movie-add-form {
   margin-top: 2rem;
   padding: 1.5rem;
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   border-radius: 4px;
   box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.15);
 }
