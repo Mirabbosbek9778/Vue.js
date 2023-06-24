@@ -1,14 +1,17 @@
 <template>
   <div class="app font-monospace">
     <div class="content">
-      <AppInfo />
+      <AppInfo
+        :allMoviesCount="movies.length"
+        :FavouriteMoviesCount="movies.filter((c) => c.favourite).length"
+      />
       <div class="search-panel">
         <SearchPanel />
         <AppFilter />
+      </div>
+      <MoveList :movies="movies" />
+      <MoveAddForm />
     </div>
-        <MoveList />
-        <MoveAddForm/>
-    </div> 
   </div>
 </template>
 
@@ -22,12 +25,21 @@ import MoveAddForm from "../move-add-form/MoveAddForm.vue";
 export default {
   components: {
     AppInfo,
-    SearchPanel, 
+    SearchPanel,
     AppFilter,
     MoveList,
     MoveAddForm,
   },
-};  
+  data() {
+    return {
+      movies: [
+        { name: "Ertugrul", viewers: 811, favourite: true, like: true },
+        { name: "Kurtlar Vadisi", viewers: 830, favourite: false, like: true },
+        { name: "KAra sevda", viewers: 785, favourite: false, like: true },
+      ],
+    };
+  },
+};
 </script>
 
 <style>
@@ -47,6 +59,6 @@ export default {
   padding: 1.5rem;
   background-color: rgb(255, 255, 255);
   border-radius: 4px;
-  box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.15);    
+  box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.15);
 }
 </style>

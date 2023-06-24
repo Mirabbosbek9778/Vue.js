@@ -1,12 +1,25 @@
 <template>
   <div class="app-info">
-    <p class="fs-3 text-uppercase">Barcha kinolar soni: 0</p>
-    <p class="fs-4 text-uppercase">Korilgan kinolar soni: 0</p>
+    <p class="fs-3 text-uppercase">Barcha kinolar soni: {{ allMoviesCount }}</p>
+    <p class="fs-4 text-uppercase">
+      Korilgan kinolar soni: {{ FavouriteMoviesCount }}
+    </p>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    allMoviesCount: {
+      type: Number,
+      required: true,
+    },
+    FavouriteMoviesCount: {
+      type: Number,
+      required: true,
+    },
+  },
+};
 </script>
 
 <style>
@@ -14,6 +27,6 @@ export default {};
   padding: 1.5rem;
   border-radius: 4px;
   background-color: white;
-  box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.15); 
+  box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.15);
 }
 </style>
