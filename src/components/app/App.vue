@@ -3,14 +3,14 @@
     <div class="content">
       <AppInfo
         :allMoviesCount="movies.length"
-        :FavouriteMoviesCount="movies.filter((c) => c.favourite).length"
+        :favouriteMoviesCount="movies.filter((c) => c.favourite).length"
       />
       <div class="search-panel">
         <SearchPanel />
         <AppFilter />
       </div>
       <MoveList :movies="movies" />
-      <MoveAddForm />
+      <MoveAddForm @createMovie="createMovie" />
     </div>
   </div>
 </template>
@@ -33,15 +33,34 @@ export default {
   data() {
     return {
       movies: [
-        { name: "Ertugrul", viewers: 811, favourite: true, like: true },
-        { name: "Kurtlar Vadisi", viewers: 830, favourite: false, like: true },
-        { name: "KAra sevda", viewers: 785, favourite: false, like: true },
+        {
+          name: "Ertugrul",
+          viewers: 811,
+          favourite: false,
+          like: true,
+        },
+        {
+          name: "Kurtlar Vadisi",
+          viewers: 830,
+          favourite: false,
+          like: false,
+        },
+        {
+          name: "KAra sevda",
+          viewers: 785,
+          favourite: true,
+          like: false,
+        },
       ],
     };
   },
+  methods: {
+    createMovie(item) {
+      this.movies.push(item);
+    },
+  },
 };
 </script>
-
 <style>
 .app {
   height: 100vh;

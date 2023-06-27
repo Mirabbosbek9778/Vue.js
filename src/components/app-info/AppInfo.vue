@@ -2,7 +2,7 @@
   <div class="app-info">
     <p class="fs-3 text-uppercase">Barcha kinolar soni: {{ allMoviesCount }}</p>
     <p class="fs-4 text-uppercase">
-      Korilgan kinolar soni: {{ FavouriteMoviesCount }}
+      Korilgan kinolar soni: {{ favMoviesCount }}
     </p>
   </div>
 </template>
@@ -14,7 +14,7 @@ export default {
       type: Number,
       required: true,
     },
-    FavouriteMoviesCount: {
+    favMoviesCount: {
       type: Number,
       required: true,
     },
