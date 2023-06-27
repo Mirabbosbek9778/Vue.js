@@ -38,18 +38,21 @@ export default {
           viewers: 811,
           favourite: false,
           like: true,
+          id: 1,
         },
         {
           name: "Kurtlar Vadisi",
           viewers: 830,
           favourite: false,
           like: false,
+          id: 2,
         },
         {
           name: "KAra sevda",
           viewers: 785,
           favourite: true,
           like: false,
+          id: 3,
         },
       ],
     };
