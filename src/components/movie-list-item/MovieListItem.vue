@@ -23,6 +23,11 @@ export default {
       required: true,
     },
   },
+  methods: {
+    onLike(){
+      this.$emit('onLike',this.movie.id)
+    }
+  },
 };
 </script>
 
