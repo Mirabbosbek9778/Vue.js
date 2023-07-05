@@ -1,77 +1,80 @@
-<template>
-  <div class="app font-monospace">
-    <div class="content">
-      <AppInfo
-        :allMoviesCount="movies.length"
-        :favouriteMoviesCount="movies.filter((c) => c.favourite).length"
-      />
-      <div class="search-panel">
-        <SearchPanel />
-        <AppFilter />
-      </div>
-      <MoveList :movies="movies" @onLike="onLikeHandler" />
-      <MoveAddForm @createMovie="createMovie" />
-    </div>
-  </div>
-</template>
-
 <script>
+
 import AppInfo from "../app-info/AppInfo.vue";
 import SearchPanel from "../SearchPanel.vue";
 import AppFilter from "../app-filter/AppFilter.vue";
 import MoveList from "../move-list/MoveList.vue";
 import MoveAddForm from "../move-add-form/MoveAddForm.vue";
-
+        
 export default {
-  components: {
-    AppInfo,
-    SearchPanel,
-    AppFilter,
-    MoveList,
-    MoveAddForm,
-  },
+   components: {
+   AppInfo,
+   SearchPanel,
+   AppFilter,
+   MoveList,
+   MoveAddForm,
+},
   data() {
     return {
-      movies: [
-        {
-          name: "Ertugrul",
-          viewers: 811,
-          favourite: false,
-          like: true,
-          id: 1,
-        },
-        {
-          name: "Kurtlar Vadisi",
-          viewers: 830,
-          favourite: false,
-          like: false,
-          id: 2,
-        },
-        {
-          name: "KAra sevda",
-          viewers: 785,
-          favourite: true,
-          like: false,
-          id: 3,
-        },
-      ],
-    };
-  },
-  methods: {
-    createMovie(item) {
-      this.movies.push(item);
-    },
-    onLikeHandler(id) {
-      this.movies=this.movies.map((item) => {
-        if (item.id == id) {
-          item.like = !item.like;
-        }
-        return item;
-      });
-    },
-  },
-};
+        movies: [
+          {
+            id: 1,
+            name: "Ertugrul",
+            viewers: 811,
+            like: false,
+            favourite: false,
+          },
+          {
+            id: 2,
+            name: "Kurtlar Vadisi",
+            viewers: 830,
+            like: false,
+            favourite: false,
+          },
+          {
+            id: 3,
+            name: "Kara sevda",
+            viewers: 785,
+            like: false,
+            favourite: false,
+          },
+          ],
+         };
+       },
+     methods: {
+       createMovie(item) {
+          this.movies.push(item);
+               },
+            onToggleHandler({id,prop}) {
+              this.movies=this.movies.map((item) => {
+                if (item.id == id) {
+                  // console.log({...item , [prop] : ! item [prop]});
+                  return {...item , [prop] : ! item [prop]}
+                }
+                return item;
+              });
+            },
+          },
+        };
 </script>
+
+<template>
+  <div class="app font-monospace">
+    <div class="content">
+      <AppInfo
+        :allMoviesCount="movies.length"
+        :favouriteMoviesCount="movies.filter((c)=>c.favourite).length"
+      />
+      <div class="search-panel">
+        <SearchPanel />
+        <AppFilter />
+      </div>
+      <MoveList :movies="movies" @onToggle="onToggleHandler" />
+      <MoveAddForm @createMovie="createMovie" />
+    </div>
+  </div>
+</template>
+
 <style>
 .app {
   height: 100vh;
