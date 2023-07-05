@@ -48,7 +48,7 @@ export default {
             onToggleHandler({id,prop}) {
               this.movies=this.movies.map((item) => {
                 if (item.id == id) {
-                  console.log({...item , [prop] : ! item [prop]});
+                  // console.log({...item , [prop] : ! item [prop]});
                   return {...item , [prop] : ! item [prop]}
                 }
                 return item;
