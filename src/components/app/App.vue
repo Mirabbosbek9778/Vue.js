@@ -39,11 +39,13 @@ export default {
             favourite: false,
           },
           ],
+          term:''
          };
+        
        },
      methods: {
        createMovie(item) {
-        
+
           this.movies.push(item);
                },
             onToggleHandler({id,prop}) {
@@ -56,9 +58,19 @@ export default {
             },
             onDeleteHandler(id){
               this.movies=this.movies.filter(c=>c.id != id)
+            },
+            onSearchHandler(arr,term){
+               if(term.length==0){
+                return arr
+               }
+
+               return arr.filter(c=>c.name.toLowerCase().indexOf(term)>-1)
+            },
+            updateTerm(term){
+              this.term=term
             }
-          },
-        };
+          }
+        }
 </script>
 
 <template>
@@ -69,10 +81,10 @@ export default {
         :favouriteMoviesCount="movies.filter((c)=>c.favourite).length"
       />
       <div class="search-panel">
-        <SearchPanel />
+        <SearchPanel :updateTerm="updateTerm"/>
         <AppFilter />
       </div>
-      <MoveList :movies="movies" @onToggle="onToggleHandler"  @onDelete="onDeleteHandler"/>
+      <MoveList :movies="onSearchHandler(movies,term)" @onToggle="onToggleHandler"  @onDelete="onDeleteHandler"/>
       <MoveAddForm @createMovie="createMovie" />
     </div>
   </div>
@@ -98,3 +110,13 @@ export default {
   box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.15);
 }
 </style>
+
+
+
+
+// const getFiltr = ({ key, value }) => {
+//   let res = students.filter((user) =>
+//     `${user[key]}`.toLowerCase().includes(`${value}`.toLowerCase())
+//   );
+//   students = res;
+// };
