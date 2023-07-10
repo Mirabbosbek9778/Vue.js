@@ -5,6 +5,7 @@ import SearchPanel from "../SearchPanel.vue";
 import AppFilter from "../app-filter/AppFilter.vue";
 import MoveList from "../move-list/MoveList.vue";
 import MoveAddForm from "../move-add-form/MoveAddForm.vue";
+import axios from 'axios'
         
 export default {
    components: {
@@ -16,29 +17,7 @@ export default {
 },
   data() {
     return {
-        movies: [
-          {
-            id: 1,
-            name: "Ertugrul",
-            viewers: 811,
-            like: false,
-            favourite: false,
-          },
-          {
-            id: 2,
-            name: "Kurtlar Vadisi",
-            viewers: 830,
-            like: false,
-            favourite: false,
-          },
-          {
-            id: 3,
-            name: "Kara sevda",
-            viewers: 785,
-            like: false,
-            favourite: false,
-          },
-          ],
+        movies: [],
           term:''
          };
         
@@ -68,10 +47,28 @@ export default {
             },
             updateTerm(term){
               this.term=term
+            },
+            async fetchMovie(){
+              try {
+                const {data}=await axios.get('https://jsonplaceholder.typicode.com/posts?_limit=10')
+                const newArr=data.map(item=>({
+                  id:item.id,
+                  name:item.title,
+                  like:false,
+                  favourite:false,
+                  viewers:item.id*10,
+                }))
+                this.movies=newArr
+              } catch (error) {
+                alert(error.message);
+              }
             }
-          }
+          },
+          mounted() {
+            this.fetchMovie()
+          },
         }
-</script>
+</script> 
 
 <template>
   <div class="app font-monospace">
