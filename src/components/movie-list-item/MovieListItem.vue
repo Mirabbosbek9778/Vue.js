@@ -3,12 +3,12 @@
     <span @click="$emit('onToggle',{id:movie.id, prop:'like'})" class="list-group-item-label">{{ movie.name }}</span>
     <input type="number" class="list-group-item-input" :value="movie.viewers" />
     <div class="d-flex justify-content-center align-items-center">
-      <button type="button" class="btn-cookie btn-sm" @click="$emit('onToggle',{id:movie.id, prop:'favourite'})">
-        <i class="fas fa-cookie"></i>
+      <button type="button" class="favourite" @click="$emit('onToggle',{id:movie.id, prop:'favourite'})">
+       <img src="../../assets/icons/heart.svg" alt="">
       </button>
 
-      <button type="button" class="btn-cookie btn-sm" @click="$emit('onDelete', movie.id)">
-        <i class="fas fa-trash"></i>
+      <button type="button" class="onDelete" @click="$emit('onDelete', movie.id)">
+      Delete
       </button>
       <i class="fas fa-star"></i>
     </div>
@@ -32,6 +32,16 @@ export default {
 </script>
 
 <style scoped>
+.onDelete{  
+  font-family: cursive;
+  color: white;
+  cursor: pointer;
+  font-size: 12px;
+  background-color: red;
+}
+.favourite{
+  background-color: yellow;
+}
 .list-group-item {
   padding: 15px 20px;
   border-bottom: 1px solid #3d5a80;
