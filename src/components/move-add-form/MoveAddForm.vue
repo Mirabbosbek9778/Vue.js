@@ -1,3 +1,29 @@
+<script>
+export default {
+  data() {
+    return {
+      name: "",
+      viewers: "",
+    };
+  },
+  methods: {
+    addMovie() {
+      if(!this.name || !this.viewers) return
+      const newMovie = {
+        name: this.name,
+        viewers: this.viewers,
+        favourite: false,
+        like: false,
+        id:Date.now()
+      };
+      this.$emit("createMovie", newMovie);
+      this.name = "";
+      this.viewers = "";
+    },
+  },
+};
+</script>
+
 <template>
   <div class="movie-add-form" @submit.prevent>
     <h3>Yangi kino qoshish</h3>
@@ -22,31 +48,6 @@
     </form>
   </div>
 </template>
-
-<script>
-export default {
-  data() {
-    return {
-      name: "",
-      viewers: "",
-    };
-  },
-  methods: {
-    addMovie() {
-      const newMovie = {
-        name: this.name,
-        viewers: this.viewers,
-        favourite: false,
-        like: false,
-        id:Date.now()
-      };
-      this.$emit("createMovie", newMovie);
-      this.name = "";
-      this.viewers = "";
-    },
-  },
-};
-</script>
 
 <style>
 .movie-add-form {
