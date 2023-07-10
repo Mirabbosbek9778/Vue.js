@@ -43,17 +43,20 @@ export default {
        },
      methods: {
        createMovie(item) {
+        
           this.movies.push(item);
                },
             onToggleHandler({id,prop}) {
               this.movies=this.movies.map((item) => {
                 if (item.id == id) {
-                  // console.log({...item , [prop] : ! item [prop]});
                   return {...item , [prop] : ! item [prop]}
                 }
                 return item;
               });
             },
+            onDeleteHandler(id){
+              this.movies=this.movies.filter(c=>c.id != id)
+            }
           },
         };
 </script>
@@ -69,7 +72,7 @@ export default {
         <SearchPanel />
         <AppFilter />
       </div>
-      <MoveList :movies="movies" @onToggle="onToggleHandler" />
+      <MoveList :movies="movies" @onToggle="onToggleHandler"  @onDelete="onDeleteHandler"/>
       <MoveAddForm @createMovie="createMovie" />
     </div>
   </div>
